@@ -4,12 +4,13 @@ export const SITE = {
   heroBg: '/hero-bg.png',
   aboutImage: '/wellness-about.png',
   tagline: 'Spiritual Wellness • Meditation • Crystal Healing • Psychic & Card Readings',
-  headline: 'Find Peace • Restore Balance • Awaken Your Inner Self',
+  headlineLine1: 'Find Peace • Restore Balance •',
+  headlineLine2: 'Awaken Your Inner Self',
   intro:
     'Welcome to a tranquil space dedicated to relaxation, mindfulness, and spiritual wellbeing. Whether you’re looking to unwind through meditation, explore crystal healing, receive psychic or card guidance, or enjoy the calming atmosphere created by crystal candles, we’re here to support your personal journey.',
-  phone: '07947 744101',
-  phoneLink: 'tel:+447947744101',
-  whatsappLink: 'https://wa.me/447947744101',
+  phone: '07503 390362',
+  phoneLink: 'tel:+447503390362',
+  whatsappLink: 'https://wa.me/447503390362',
   email: 'info@masteralex.co.uk',
   availability: {
     title: '7 Days a Week',

@@ -40,8 +40,9 @@ export default function App() {
           <p className="mb-4 text-sm font-medium tracking-wide text-master-gold-light md:text-base">
             {SITE.tagline}
           </p>
-          <h1 className="text-3xl font-extrabold leading-tight text-white md:text-5xl lg:text-6xl">
-            <span className="gold-text">{SITE.headline}</span>
+          <h1 className="mx-auto flex max-w-3xl flex-col gap-1 text-xl font-extrabold leading-snug sm:text-2xl md:text-3xl lg:text-4xl">
+            <span className="gold-text">{SITE.headlineLine1}</span>
+            <span className="gold-text">{SITE.headlineLine2}</span>
           </h1>
           <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">
             {SITE.intro}
