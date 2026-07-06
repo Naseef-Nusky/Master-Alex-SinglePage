@@ -32,7 +32,7 @@ export default function ContactForm({
   fields = ['name', 'email', 'phone', 'message'],
   showDate = false,
   dark = false,
-  source = 'single-page',
+  source = 'wellness',
   page = '',
   onSuccess,
 }) {
@@ -77,9 +77,10 @@ export default function ContactForm({
         message: form.message.trim(),
         date: showDate ? form.date : '',
         source,
-        page: page || 'Master Alex Single Page',
+        page: page || 'Wellness',
       })
       setForm(EMPTY_FORM)
+      setStatus('idle')
       onSuccess?.()
     } catch (error) {
       setStatus('error')

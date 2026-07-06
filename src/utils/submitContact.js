@@ -1,11 +1,39 @@
-const API_URL = import.meta.env.VITE_CONTACT_API_URL || '/api/contact'
+function getContactApiUrl() {
+  const configured = (import.meta.env.VITE_CONTACT_API_URL || '').trim()
+
+  // Same as main website: nginx proxies /api/contact on the same domain
+  if (!configured) {
+    return '/api/contact'
+  }
+
+  // Droplet builds sometimes used this domain — it does not exist
+  if (/api\.masteralex\.co\.uk/i.test(configured)) {
+    return '/api/contact'
+  }
+
+  try {
+    const url = new URL(configured, window.location.origin)
+    if (url.origin === window.location.origin) {
+      return url.pathname
+    }
+    return configured
+  } catch {
+    return '/api/contact'
+  }
+}
 
 export async function submitContact(payload) {
-  const response = await fetch(API_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  })
+  let response
+
+  try {
+    response = await fetch(getContactApiUrl(), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+  } catch {
+    throw new Error('Unable to reach the server. Please call us directly.')
+  }
 
   const data = await response.json().catch(() => ({}))
 
