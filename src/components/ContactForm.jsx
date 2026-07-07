@@ -77,7 +77,7 @@ export default function ContactForm({
         message: form.message.trim(),
         date: showDate ? form.date : '',
         source,
-        page: page || 'Wellness',
+        page: page || window.location.pathname,
       })
       setForm(EMPTY_FORM)
       setStatus('idle')

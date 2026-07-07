@@ -1,13 +1,8 @@
 function getContactApiUrl() {
   const configured = (import.meta.env.VITE_CONTACT_API_URL || '').trim()
 
-  // Same as main website: nginx proxies /api/contact on the same domain
-  if (!configured) {
-    return '/api/contact'
-  }
-
-  // Droplet builds sometimes used this domain — it does not exist
-  if (/api\.masteralex\.co\.uk/i.test(configured)) {
+  // Same on all sites: nginx proxies /api/contact on the same domain
+  if (!configured || /api\.masteralex\.co\.uk/i.test(configured)) {
     return '/api/contact'
   }
 
@@ -32,7 +27,7 @@ export async function submitContact(payload) {
       body: JSON.stringify(payload),
     })
   } catch {
-    throw new Error('Unable to reach the server. Please call us directly.')
+    throw new Error('Unable to reach the server. Please try again or call us directly.')
   }
 
   const data = await response.json().catch(() => ({}))
