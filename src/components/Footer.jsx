@@ -5,9 +5,9 @@ export default function Footer() {
   return (
     <footer className="bg-master-dark text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <a href="#home" className="mb-5 inline-block">
+            <a href="/" className="mb-5 inline-block">
               <img
                 src={SITE.logo}
                 alt={SITE.name}
@@ -37,6 +37,14 @@ export default function Footer() {
             </div>
           </div>
 
+          <div>
+            <h3 className="mb-4 text-sm font-semibold tracking-wider text-white/40 uppercase">Legal</h3>
+            <div className="space-y-3 text-sm">
+              <a href="/terms" className="block text-white/70 transition hover:text-master-gold">
+                Terms &amp; Conditions
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ContactForm from './components/ContactForm'
@@ -6,21 +6,17 @@ import ThankYou from './components/ThankYou'
 import ServiceCard from './components/ServiceCard'
 import ContactInfo from './components/ContactInfo'
 import AvailabilityBadge from './components/AvailabilityBadge'
+import TermsPage from './pages/TermsPage'
 import { PhoneIcon, CheckIcon } from './components/Icons'
 import { SITE, SERVICES, WHY_CHOOSE } from './constants/siteData'
 
-export default function App() {
-  const [formSubmitted, setFormSubmitted] = useState(false)
+function getRoute() {
+  return window.location.pathname === '/terms' ? 'terms' : 'home'
+}
 
-  const handleFormSuccess = () => {
-    setFormSubmitted(true)
-    document.getElementById('book')?.scrollIntoView({ behavior: 'smooth' })
-  }
-
+function HomePage({ formSubmitted, onFormSuccess }) {
   return (
-    <div className="min-h-screen bg-white text-master-purple">
-      <Header />
-
+    <>
       {/* Hero */}
       <section
         id="home"
@@ -147,14 +143,52 @@ export default function App() {
                 <ContactForm
                   buttonLabel="Send Message"
                   page="Book Your Session"
-                  onSuccess={handleFormSuccess}
+                  onSuccess={onFormSuccess}
                 />
               </div>
             </div>
           )}
         </div>
       </section>
+    </>
+  )
+}
 
+export default function App() {
+  const [route, setRoute] = useState(getRoute)
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setRoute(getRoute())
+      if (getRoute() === 'home' && window.location.hash) {
+        const target = document.querySelector(window.location.hash)
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' })
+        }
+      } else {
+        window.scrollTo(0, 0)
+      }
+    }
+
+    window.addEventListener('popstate', handleRouteChange)
+    handleRouteChange()
+    return () => window.removeEventListener('popstate', handleRouteChange)
+  }, [])
+
+  const handleFormSuccess = () => {
+    setFormSubmitted(true)
+    document.getElementById('book')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  if (route === 'terms') {
+    return <TermsPage />
+  }
+
+  return (
+    <div className="min-h-screen bg-white text-master-purple">
+      <Header />
+      <HomePage formSubmitted={formSubmitted} onFormSuccess={handleFormSuccess} />
       <Footer />
     </div>
   )

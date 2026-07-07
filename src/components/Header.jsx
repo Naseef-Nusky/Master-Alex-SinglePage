@@ -15,7 +15,7 @@ export default function Header() {
           </a>
 
           <a
-            href="#home"
+            href="/"
             className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center transition-transform hover:scale-105"
           >
             <img
@@ -26,7 +26,7 @@ export default function Header() {
           </a>
 
           <a
-            href="#book"
+            href="/#book"
             className="inline-flex min-h-11 items-center rounded-xl bg-master-gold px-3 py-2 text-xs font-semibold text-master-dark transition hover:bg-master-gold-light sm:px-5 sm:py-2.5 sm:text-sm"
           >
             <span className="sm:hidden">Book</span>
