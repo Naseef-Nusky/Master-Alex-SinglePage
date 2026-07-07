@@ -4,7 +4,11 @@ import { SITE } from '../constants/siteData'
 export default function ThankYou() {
   useEffect(() => {
     const timer = setTimeout(() => {
-      window.location.reload()
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual'
+      }
+      window.scrollTo(0, 0)
+      window.location.href = window.location.origin + window.location.pathname
     }, 2500)
     return () => clearTimeout(timer)
   }, [])
