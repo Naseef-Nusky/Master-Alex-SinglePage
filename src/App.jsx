@@ -130,12 +130,7 @@ export default function App() {
       <section id="book" className="bg-master-surface px-4 py-20">
         <div className="mx-auto max-w-6xl">
           {formSubmitted ? (
-            <ThankYou
-              onBack={() => {
-                setFormSubmitted(false)
-                document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-            />
+            <ThankYou />
           ) : (
             <div className="grid items-start gap-12 lg:grid-cols-2">
               <div>
