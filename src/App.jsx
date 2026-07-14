@@ -55,6 +55,32 @@ function HomePage({ formSubmitted, onFormSuccess }) {
         </div>
       </section>
 
+      {/* Free Consultation — right after hero */}
+      <section id="consultation" className="bg-master-surface px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-xl">
+          {formSubmitted ? (
+            <ThankYou />
+          ) : (
+            <>
+              <div className="mb-8 text-center">
+                <span className="text-xs font-bold tracking-widest text-master-gold uppercase">Get Started</span>
+                <h2 className="mt-3 text-3xl font-bold md:text-4xl">Book a Free Consultation</h2>
+                <p className="mt-3 text-sm text-master-muted sm:text-base">
+                  Fill in your details and we will get back to you within 24 hours.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm md:p-8">
+                <ContactForm
+                  buttonLabel="Send Message"
+                  page="Hero Consultation"
+                  onSuccess={onFormSuccess}
+                />
+              </div>
+            </>
+          )}
+        </div>
+      </section>
+
       {/* Services */}
       <section id="services" className="bg-master-surface px-4 py-20">
         <div className="mx-auto max-w-6xl">
@@ -126,7 +152,16 @@ function HomePage({ formSubmitted, onFormSuccess }) {
       <section id="book" className="bg-master-surface px-4 py-20">
         <div className="mx-auto max-w-6xl">
           {formSubmitted ? (
-            <ThankYou />
+            <div className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-sm">
+              <h2 className="text-2xl font-bold md:text-3xl">Thank you for your message</h2>
+              <p className="mt-3 text-master-muted">
+                We have received your enquiry. For urgent help, call{' '}
+                <a href={SITE.phoneLink} className="font-semibold text-master-gold-dark hover:underline">
+                  {SITE.phone}
+                </a>
+                .
+              </p>
+            </div>
           ) : (
             <div className="grid items-start gap-12 lg:grid-cols-2">
               <div>
@@ -178,7 +213,7 @@ export default function App() {
 
   const handleFormSuccess = () => {
     setFormSubmitted(true)
-    document.getElementById('book')?.scrollIntoView({ behavior: 'smooth' })
+    document.getElementById('consultation')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   if (route === 'terms') {

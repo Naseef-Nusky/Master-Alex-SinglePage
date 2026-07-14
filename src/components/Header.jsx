@@ -26,7 +26,7 @@ export default function Header() {
           </a>
 
           <a
-            href="/#book"
+            href="/#consultation"
             className="inline-flex min-h-11 items-center rounded-xl bg-master-gold px-3 py-2 text-xs font-semibold text-master-dark transition hover:bg-master-gold-light sm:px-5 sm:py-2.5 sm:text-sm"
           >
             <span className="sm:hidden">Book</span>
